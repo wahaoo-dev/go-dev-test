@@ -51,7 +51,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        repository: https://github.com/wahaoo-dev/dev-test-cd.git
+        repository: wahaoo-dev/dev-test-cd
     - name: status
       run: pwd && tree && git status
     - name: config
