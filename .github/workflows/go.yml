@@ -56,6 +56,6 @@ jobs:
     #- name: set remote url
     #  run: git remote set-url origin https://${GITHUB_USER}:${GITHUB_PWD}@github.com/wahaoo-dev/dev-test-cd.git
     - name: update tag
-      run: git status && sed -i "s#${{ secrets.DOCKER_REPO }}.*#${{ secrets.DOCKER_REPO }}:SNAPSHOT-${{ github.run_number }}#g" ./go-dev-test/deployment.yaml && git status 
+      run: pwd && tree && git status && sed -i "s#${{ secrets.DOCKER_REPO }}.*#${{ secrets.DOCKER_REPO }}:SNAPSHOT-${{ github.run_number }}#g" ./go-dev-test/deployment.yaml && git status 
     - name: push
       run: git add go-dev-test/deployment.yaml && git commit -m "update tag SNAPSHOT-${{ secrets.DOCKER_REPO }}" && git push origin master
