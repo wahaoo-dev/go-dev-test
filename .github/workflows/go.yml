@@ -40,10 +40,10 @@ jobs:
       run: echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
     
     - name: tag
-      run: docker tag go-dev-test:latest ${{ secrets.DOCKER_USER }}/go-dev-test:SNAPSHOT-${{ secrets.GITHUB_RUN_NUMBER }}
+      run: docker tag go-dev-test:latest ${{ secrets.DOCKER_USER }}/go-dev-test:SNAPSHOT-${{ GITHUB_RUN_NUMBER }}
     
     - name: push
-      run: docker push ${{ secrets.DOCKER_USER }}/go-dev-test:SNAPSHOT-${{ secrets.GITHUB_RUN_NUMBER }}
+      run: docker push ${{ secrets.DOCKER_USER }}/go-dev-test:SNAPSHOT-${{ GITHUB_RUN_NUMBER }}
 
   cd-image-update:
     needs: push-docker-image
