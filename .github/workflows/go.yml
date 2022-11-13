@@ -57,7 +57,7 @@ jobs:
     - name: config
       run: git config --global user.name action && git config --global user.email action@github.com
     - name: set remote url
-      run: git remote set-url origin https://${{ secrets.GITHUB_USER }}:${{ secrets.GITHUB_PWD }}@github.com/wahaoo-dev/dev-test-cd.git
+      run: git remote set-url origin ${{ secrets.CD_GITHUB_URL }}
     - name: update tag
       run: sed -i "s#${{ secrets.DOCKER_REPO }}.*#${{ secrets.DOCKER_REPO }}:SNAPSHOT-${{ github.run_number }}#g" go-dev-test/deployment.yaml && cat go-dev-test/deployment.yaml | grep image 
     - name: push
