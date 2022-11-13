@@ -52,7 +52,7 @@ jobs:
     - name: clone
       run: git clone https://github.com/wahaoo-dev/dev-test-cd.git && cd dev-test-cd && pwd && ls
     - name: config
-      run: git config --global user.name action && git config --global user.email action@github.com && \
+      run: git config --global user.name action && git config --global user.email action@github.com
     - name: set remote url
       run: git remote set-url origin https://${GITHUB_USER}:${GITHUB_PWD}@github.com/wahaoo-dev/dev-test-cd.git
     - name: update tag
