@@ -27,8 +27,27 @@ jobs:
     - name: Test
       run: go test -v ./...
 
-  push-docker:
+  push-docker-image:
+    needs: build-and-test
     runs-on: ubuntu-latest
     steps:
-    - name: build docker image
-      run: pwd && ls && docker --version
+    - uses: actions/checkout@v3
+      
+    - name: build
+      run: docker build -t go-dev-test:latest .
+    
+    - name: login
+      run: echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
+    
+    - name: tag
+      run: docker tag go-dev-test:latest ${{ secrets.DOCKER_USER }}/go-dev-test:SNAPSHOT-${{ secrets.GITHUB_RUN_NUMBER }}
+    
+    - name: push
+      run: docker push ${{ secrets.DOCKER_USER }}/go-dev-test:SNAPSHOT-${{ secrets.GITHUB_RUN_NUMBER }}
+
+  cd-image-update:
+    needs: push-docker-image
+    runs-on: ubuntu-latest
+    steps:
+    - name: clone
+      run: git clone https://github.com/wahaoo-dev/dev-test-cd.git && pwd && ls
