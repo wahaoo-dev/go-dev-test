@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: clone
-      run: git clone https://github.com/wahaoo-dev/dev-test-cd.git && cd dev-test-cd && pwd && ls
+      run: git clone https://github.com/wahaoo-dev/dev-test-cd.git && cd dev-test-cd && pwd && tree
     - name: config
       run: git config --global user.name action && git config --global user.email action@github.com
     #- name: set remote url
