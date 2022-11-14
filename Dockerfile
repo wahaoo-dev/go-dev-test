@@ -5,5 +5,5 @@ COPY ./conf/ /app/conf/
 WORKDIR /app/
 RUN cd src/ && go mod download && go build -o ../service main.go && cd ../ && rm -rf src/
 
-EXPOSE 9001
+EXPOSE 8080
 CMD ["./service"]
